@@ -4,6 +4,23 @@ Google Chrome, 한글 입력(Fcitx5), 암호 인증 noVNC, 선택형 RustDesk �
 
 현재 지원 플랫폼은 **Linux x86-64(amd64)**입니다. 로그인 정보와 접속 암호는 이미지에 포함하지 않습니다.
 
+## Docker Hub에서 실행
+
+[Docker Hub 이미지](https://hub.docker.com/r/wslee407/chrome-rustdesk-korean)의 `0.1.0` 태그를 사용할 수 있습니다. `latest`도 같은 버전을 가리키며 이후 릴리스에서 바뀔 수 있습니다.
+
+```bash
+docker pull wslee407/chrome-rustdesk-korean:0.1.0
+docker run -d --name remote-chrome --shm-size=1g --stop-timeout=20 \
+  --cap-add=SYS_ADMIN \
+  --security-opt seccomp=unconfined --security-opt apparmor=unconfined \
+  -p 6085:6080 -p 21120:21118 \
+  -v chrome-profile:/data/chrome-profile \
+  -v remote-settings:/config \
+  wslee407/chrome-rustdesk-korean:0.1.0
+```
+
+이 예시는 Chrome 프로필과 원격 접속 설정을 각각 Docker 볼륨에 보존합니다. 아래 저장·포트·RustDesk 선택 옵션은 공개 이미지에도 동일하게 적용됩니다. 직접 빌드하는 예시의 `chrome-rustdesk-korean:local`을 공개 이미지 이름으로 바꾸면 됩니다.
+
 ## 빌드와 실행
 
 ```bash
@@ -139,4 +156,4 @@ smoke 검증은 독립 컨테이너와 시험용 볼륨을 만들고 종료 시 
 - [Fcitx5](https://github.com/fcitx/fcitx5), [한글 입력 엔진](https://github.com/fcitx/fcitx5-hangul)
 - [noVNC](https://github.com/novnc/noVNC), [x11vnc](https://github.com/LibVNC/x11vnc), [Patchright](https://github.com/Kaliiiiiiiiii-Vinyzu/patchright-python)
 
-이 저장소는 Google·RustDesk의 공식 프로젝트가 아닙니다. 현재 공개 대상은 빌드 소스이며, 레지스트리 이미지 배포 여부는 별도입니다.
+이 저장소는 Google·RustDesk의 공식 프로젝트가 아닙니다. 빌드 소스는 이 GitHub 저장소에, 이미지는 `wslee407/chrome-rustdesk-korean` Docker Hub 저장소에 공개합니다.
