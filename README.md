@@ -4,6 +4,17 @@ Google Chrome, 한글 입력(Fcitx5), 암호 인증 noVNC, 선택형 RustDesk �
 
 현재 지원 플랫폼은 **Linux x86-64(amd64)**입니다. 로그인 정보와 접속 암호는 이미지에 포함하지 않습니다.
 
+## Claude Code·Codex 스킬 설치
+
+같은 브라우저에서 사용자가 로그인하고 에이전트가 이어서 작업하는 방법을 `chrome-rustdesk` 스킬로 제공합니다. 스킬을 사용할 프로젝트 폴더에서 설치합니다.
+
+```bash
+npx --yes skills@1.7.1 add KentLee86/chrome-rustdesk-korean \
+  --skill chrome-rustdesk --agent claude-code codex --copy --yes
+```
+
+Claude Code에서는 `/chrome-rustdesk`, Codex에서는 `$chrome-rustdesk`로 호출합니다. [설치 방식·저장소 구조·사용 예시](https://github.com/KentLee86/chrome-rustdesk-korean/blob/main/docs/agent-skill.md)를 참고하세요. 이 명령은 Vercel Labs의 공통 설치 도구를 사용하며 Node.js와 npm이 필요합니다.
+
 ## Docker Hub에서 실행
 
 [Docker Hub 이미지](https://hub.docker.com/r/wslee407/chrome-rustdesk-korean)의 `0.1.0` 태그를 사용할 수 있습니다. `latest`도 같은 버전을 가리키며 이후 릴리스에서 바뀔 수 있습니다.
