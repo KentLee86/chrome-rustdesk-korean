@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome RustDesk"
+  short_description: "Chrome 실행과 한글 입력, 원격 접속 및 프로필 저장 관리"
+  default_prompt: "$chrome-rustdesk로 Chrome을 실행하고 원격 접속 정보를 알려줘."
