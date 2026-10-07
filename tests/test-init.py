@@ -8,7 +8,8 @@ from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location("init_runtime", Path(__file__).parents[1] / "init-runtime.py")
 module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(module)
+# Read source directly so a same-size negative mutation cannot reuse stale .pyc.
+exec(compile(Path(spec.origin).read_text(), spec.origin, "exec"), module.__dict__)
 
 
 class InitTests(unittest.TestCase):

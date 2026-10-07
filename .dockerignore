@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!start-desktop.sh
+!entrypoint.sh
+!init-runtime.py
+!config/
+!config/fcitx5/
+!config/fcitx5/config
+!config/fcitx5/profile
